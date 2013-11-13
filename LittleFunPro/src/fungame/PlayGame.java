@@ -55,26 +55,37 @@ public class PlayGame {
 	// game regulations
 	public void compete(String UGest, String PGest) {
 
+		int result = computeInternal(UGest, PGest);
+
+		if (result == 1)
+			System.out.println("you win!");
+		else if (result == -1)
+			System.out.println("program wins!");
+		else if (result == 0)
+			System.out.println("there is an even");
+	}
+
+	public int computeInternal(String UGest, String PGest) {
+
 		int indexOfUGest = gestures.indexOf(UGest);
 		int indexOfPGest = gestures.indexOf(PGest);
 		int diff = indexOfUGest - indexOfPGest;
 
 		if (diff > 0) {
 			if (diff % 2 == 0)
-				System.out.println("you win!");
+				return 1;
 			else
-				System.out.println("program wins!");
+				return -1;
 		} else if (diff < 0) {
 
 			if (diff % 2 == 0)
-				System.out.println("program wins!");
+				return -1;
 			else
-				System.out.println("you win!");
+				return 1;
 		}
 
 		else
-			System.out.println("there is an even");
-
+			return 0;
 	}
 
 	// Trigger the game and ask the user whether to continue playing or not.
